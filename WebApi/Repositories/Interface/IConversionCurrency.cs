@@ -8,8 +8,9 @@ using WebApi.ViewModel;
 
 namespace WebApi.Repositories.Interface
 {
-    public interface ICurrencyConversion
+    public interface IConversionCurrency
     {
-        IEnumerable<CurrencyRateResponse> ConversionCurrencyRate(List<CurrencyRate> currencyRate);
+        double ExchangeRateService(string from ,string to);
+      
     }
 }

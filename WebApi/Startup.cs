@@ -40,7 +40,7 @@ namespace WebApi
 
         private void IntilalizeServices(IServiceCollection services)
         {
-            services.AddScoped<ICurrencyConversion, ConversionCurrencyService>();
+            services.AddScoped<IConversionCurrency, ConversionCurrencyService>();
         }
 
 

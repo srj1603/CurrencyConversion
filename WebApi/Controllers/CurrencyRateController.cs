@@ -18,16 +18,30 @@ namespace WebApi.Controllers
     [ApiController]
     public class CurrencyRateController : ControllerBase
     {
-        private readonly ICurrencyConversion _ConversionCurrencyService;
-        public CurrencyRateController(ICurrencyConversion currencyConversion)
+        private readonly IConversionCurrency _ConversionCurrencyService;
+        public CurrencyRateController(IConversionCurrency currencyConversion)
         {
             _ConversionCurrencyService = currencyConversion;
         }
         [HttpPost("GetConversionCurrencyRate")]
-        public ActionResult GetConversionCurrencyRate([FromBody] List<CurrencyRate> currencyRate)
+        public ConversionResponse GetConversionCurrencyRate(ConversionRequest req)
         {
-            var Result = _ConversionCurrencyService.ConversionCurrencyRate(currencyRate);
-            return Ok(Result);
+            ConversionResponse res = new ConversionResponse();
+            res.rates = new List<CurrencyRateResponse>();
+            foreach (var rate in req.rates)
+            {
+                double conversionRate = _ConversionCurrencyService.ExchangeRateService(rate.From, rate.To);
+                CurrencyRateResponse currres = new CurrencyRateResponse();
+                currres.From = rate.From;
+                currres.To = rate.To;
+                currres.Amount = rate.Amount;
+                currres.ConvertedAmount = rate.Amount * conversionRate;
+                res.rates.Add(currres);
+          
+                
+            }
+            return res;
+           
         }
     }
 
