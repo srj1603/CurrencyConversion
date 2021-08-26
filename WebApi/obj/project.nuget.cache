@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "lHhQIbmveTNcnmXq170d7ycq/62lTetGZ6J+deHsyZ7cqf9xYCNL+9r79Q4MQrWgwo4BJUa+Yl7lX2QWofesdg==",
+  "dgSpecHash": "h7nYrMXCAGwTN2LP7goB5uTi4Ggk33cFJQ5B6stIU71a0uzcoKK/Ew8d3ywIXGRtNxsKOLV20yx4jv3QDhCHug==",
   "success": true,
   "projectFilePath": "D:\\Currency\\WebApi\\WebApi\\WebApi.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\User\\.nuget\\packages\\jaeger.thrift\\0.3.7\\jaeger.thrift.0.3.7.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\jaeger.thrift.vendoredthrift\\0.3.7\\jaeger.thrift.vendoredthrift.0.3.7.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",

@@ -33,6 +33,7 @@
     ".NETCoreApp,Version=v5.0": {
       "WebApi/1.0.0": {
         "dependencies": {
+          "Jaeger.Thrift": "0.3.7",
           "Newtonsoft.Json": "13.0.1",
           "Swashbuckle.AspNetCore": "5.6.3",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
@@ -324,6 +325,31 @@
         },
         "compile": {
           "WebApi.dll": {}
+        }
+      },
+      "Jaeger.Thrift/0.3.7": {
+        "dependencies": {
+          "Jaeger.Thrift.VendoredThrift": "0.3.7"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Jaeger.Thrift.dll": {
+            "assemblyVersion": "0.3.7.0",
+            "fileVersion": "0.3.7.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Jaeger.Thrift.dll": {}
+        }
+      },
+      "Jaeger.Thrift.VendoredThrift/0.3.7": {
+        "runtime": {
+          "lib/netstandard2.0/Jaeger.Thrift.VendoredThrift.dll": {
+            "assemblyVersion": "1.0.0.1",
+            "fileVersion": "1.0.0.1"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Jaeger.Thrift.VendoredThrift.dll": {}
         }
       },
       "Microsoft.Extensions.ApiDescription.Server/3.0.0": {},
@@ -2101,6 +2127,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Jaeger.Thrift/0.3.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fzAZm+5HLpohXvZLvRNMulWI/h3QVw7yvbDK6w73DiB8QtLd0uEJPe92bIl83r7vIf+a6QgbwQky4MKAh1Xxzw==",
+      "path": "jaeger.thrift/0.3.7",
+      "hashPath": "jaeger.thrift.0.3.7.nupkg.sha512"
+    },
+    "Jaeger.Thrift.VendoredThrift/0.3.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hQhMlcY0Bum2PpZ6UThPCAYMMPOVFUs7ZCIAi9JkV/KCvbXy19PDmelLsKbjteaptpCPkCRtPtsO3wpvshL9Kw==",
+      "path": "jaeger.thrift.vendoredthrift/0.3.7",
+      "hashPath": "jaeger.thrift.vendoredthrift.0.3.7.nupkg.sha512"
     },
     "Microsoft.Extensions.ApiDescription.Server/3.0.0": {
       "type": "package",

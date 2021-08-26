@@ -10,7 +10,7 @@ namespace WebApi.Repositories.Interface
 {
     public interface IConversionCurrency
     {
-        double ExchangeRateService(string from ,string to);
+        Task<ExchangeRate> GetExchangeRate(string From ,string To);
       
     }
 }

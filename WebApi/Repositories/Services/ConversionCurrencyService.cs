@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -15,26 +16,42 @@ namespace WebApi.Repositories.Services
 {
     public class ConversionCurrencyService : IConversionCurrency
     {
-        public double ExchangeRateService(string from, String to)
+        public async Task<ExchangeRate> GetExchangeRate(string From, String To)
         {
-            String urlString = "https://v6.exchangerate-api.com/v6/4cb40d1991f183f57e8b927c/latest/" + from;
-            var webClient = new WebClient();
-            var responsejson = webClient.DownloadString(urlString);
-            ExchangeRateApiResponse conversionRateApi = JsonConvert.DeserializeObject<ExchangeRateApiResponse>(responsejson);
-            ConversionRates conversionRates = conversionRateApi.conversion_rates;
-            var currencyConvertTo = to;
-            var getApiInfo = conversionRates.GetType().GetProperty(currencyConvertTo);
-            var getRate = getApiInfo.GetValue(conversionRates, null);
-            string rateValue = getRate.ToString();
-            double amountConvert = Convert.ToDouble(rateValue);
-            return amountConvert;
-         
-            
+            try
+            {
+                ConversionRequest conversion = new ConversionRequest();
+                ExchangeRate exchangeRate = new ExchangeRate();
+                String urlString = "https://v6.exchangerate-api.com/v6/4cb40d1991f183f57e8b927c/latest/" + From;
+                var webClient = new WebClient();
+                var responsejson = await webClient.DownloadStringTaskAsync(urlString);
+                ExchangeRateApiResponse conversionRateApi = JsonConvert.DeserializeObject<ExchangeRateApiResponse>(responsejson);
+                ConversionRates conversionRates = conversionRateApi.conversion_rates;
+                var currencyConvertTo = To;
+                var getApiInfo = conversionRates.GetType().GetProperty(currencyConvertTo);
+                var getRate = getApiInfo.GetValue(conversionRates, null);
+                string rateValue = getRate.ToString();
+                double amountConvert = Convert.ToDouble(rateValue);
+                exchangeRate.From = From;
+                exchangeRate.To = To;
+                exchangeRate.ConvertedRate = amountConvert;
+                return exchangeRate;
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+
+        
         }
 
     }
 
-        
- }
+
+}
 
 

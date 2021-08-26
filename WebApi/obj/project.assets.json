@@ -2,6 +2,27 @@
   "version": 3,
   "targets": {
     "net5.0": {
+      "Jaeger.Thrift/0.3.7": {
+        "type": "package",
+        "dependencies": {
+          "Jaeger.Thrift.VendoredThrift": "0.3.7"
+        },
+        "compile": {
+          "lib/netstandard2.0/Jaeger.Thrift.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Jaeger.Thrift.dll": {}
+        }
+      },
+      "Jaeger.Thrift.VendoredThrift/0.3.7": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Jaeger.Thrift.VendoredThrift.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Jaeger.Thrift.VendoredThrift.dll": {}
+        }
+      },
       "Microsoft.Extensions.ApiDescription.Server/3.0.0": {
         "type": "package",
         "build": {
@@ -88,6 +109,32 @@
     }
   },
   "libraries": {
+    "Jaeger.Thrift/0.3.7": {
+      "sha512": "fzAZm+5HLpohXvZLvRNMulWI/h3QVw7yvbDK6w73DiB8QtLd0uEJPe92bIl83r7vIf+a6QgbwQky4MKAh1Xxzw==",
+      "type": "package",
+      "path": "jaeger.thrift/0.3.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "jaeger.thrift.0.3.7.nupkg.sha512",
+        "jaeger.thrift.nuspec",
+        "lib/netstandard2.0/Jaeger.Thrift.dll",
+        "lib/netstandard2.0/Jaeger.Thrift.pdb"
+      ]
+    },
+    "Jaeger.Thrift.VendoredThrift/0.3.7": {
+      "sha512": "hQhMlcY0Bum2PpZ6UThPCAYMMPOVFUs7ZCIAi9JkV/KCvbXy19PDmelLsKbjteaptpCPkCRtPtsO3wpvshL9Kw==",
+      "type": "package",
+      "path": "jaeger.thrift.vendoredthrift/0.3.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "jaeger.thrift.vendoredthrift.0.3.7.nupkg.sha512",
+        "jaeger.thrift.vendoredthrift.nuspec",
+        "lib/netstandard2.0/Jaeger.Thrift.VendoredThrift.dll",
+        "lib/netstandard2.0/Jaeger.Thrift.VendoredThrift.pdb"
+      ]
+    },
     "Microsoft.Extensions.ApiDescription.Server/3.0.0": {
       "sha512": "LH4OE/76F6sOCslif7+Xh3fS/wUUrE5ryeXAMcoCnuwOQGT5Smw0p57IgDh/pHgHaGz/e+AmEQb7pRgb++wt0w==",
       "type": "package",
@@ -225,6 +272,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "Jaeger.Thrift >= 0.3.7",
       "Newtonsoft.Json >= 13.0.1",
       "Swashbuckle.AspNetCore >= 5.6.3"
     ]
@@ -268,6 +316,10 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
+          "Jaeger.Thrift": {
+            "target": "Package",
+            "version": "[0.3.7, )"
+          },
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.1, )"

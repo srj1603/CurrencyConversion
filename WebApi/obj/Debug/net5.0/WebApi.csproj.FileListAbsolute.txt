@@ -7,6 +7,8 @@ D:\Currency\WebApi\WebApi\bin\Debug\net5.0\WebApi.runtimeconfig.dev.json
 D:\Currency\WebApi\WebApi\bin\Debug\net5.0\WebApi.dll
 D:\Currency\WebApi\WebApi\bin\Debug\net5.0\ref\WebApi.dll
 D:\Currency\WebApi\WebApi\bin\Debug\net5.0\WebApi.pdb
+D:\Currency\WebApi\WebApi\bin\Debug\net5.0\Jaeger.Thrift.dll
+D:\Currency\WebApi\WebApi\bin\Debug\net5.0\Jaeger.Thrift.VendoredThrift.dll
 D:\Currency\WebApi\WebApi\bin\Debug\net5.0\Microsoft.OpenApi.dll
 D:\Currency\WebApi\WebApi\bin\Debug\net5.0\Newtonsoft.Json.dll
 D:\Currency\WebApi\WebApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll

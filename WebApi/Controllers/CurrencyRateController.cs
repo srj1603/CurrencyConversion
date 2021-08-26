@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Jaeger.Thrift;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -23,26 +24,61 @@ namespace WebApi.Controllers
         {
             _ConversionCurrencyService = currencyConversion;
         }
+
+
         [HttpPost("GetConversionCurrencyRate")]
-        public ConversionResponse GetConversionCurrencyRate(ConversionRequest req)
+        public ConversionResponse GetExchangeAmount(ConversionRequest req)
         {
             ConversionResponse res = new ConversionResponse();
             res.rates = new List<CurrencyRateResponse>();
-            foreach (var rate in req.rates)
+            List<CurrencyRate> List = req.rates;
+            do
             {
-                double conversionRate = _ConversionCurrencyService.ExchangeRateService(rate.From, rate.To);
-                CurrencyRateResponse currres = new CurrencyRateResponse();
-                currres.From = rate.From;
-                currres.To = rate.To;
-                currres.Amount = rate.Amount;
-                currres.ConvertedAmount = rate.Amount * conversionRate;
-                res.rates.Add(currres);
-          
-                
-            }
-            return res;
+                var splittted = List.Select((v, i) => new { val = v, idx = i })
+                                   .GroupBy(x => x.idx / 3)
+                                   .Select(g => g.Select(y => y.val).ToList())
+                                   .ToList();
+
+                foreach (var batchOfThree in splittted)
+                {
+                    List<Task<ExchangeRate>> tasks = new List<Task<ExchangeRate>>();
+                    foreach (var rate in batchOfThree)
+                    {
+
+                        var t = _ConversionCurrencyService.GetExchangeRate(rate.From, rate.To);
+                        tasks.Add(t);
+                    }
+                    Task[] listOfArray = tasks.ToArray();
+                    Task.WaitAll(listOfArray);
+                    foreach (var item in tasks)
+                    {
+                        ConversionRequest conversionRequest = new ConversionRequest();
+                        ExchangeRate exgRate = item.Result;
+                        var matchRequest = req.rates.Find(x => x.From == exgRate.From && x.To == exgRate.To);
+                        var convertedAmount = matchRequest.Amount * exgRate.ConvertedRate;
+                        CurrencyRateResponse currencyRateResponse = new CurrencyRateResponse();
+                        currencyRateResponse.From = exgRate.From;
+                        currencyRateResponse.To = exgRate.To;
+                        currencyRateResponse.Amount = matchRequest.Amount;
+                        currencyRateResponse.ConvertedAmount = exgRate.ConvertedRate * convertedAmount;
+                        res.rates.Add(currencyRateResponse);
+
+                    }
+
+
+                }
+
+                return res;
+            } while (List.Count > 0);
            
         }
-    }
 
+
+    }
 }
+
+
+
+
+
+
